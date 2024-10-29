@@ -5,7 +5,7 @@
 API Fetching Pipeline DAG for Airflow
 
 API를 통한 비정형 데이터 수집 ~ 적재까지의 파이프라인 DAG 개발 / 테스트
-
+~~사실 python 공부좀 하려고 하는거임~~
 ## Installation
 
 - Python version : **3.10.12**
