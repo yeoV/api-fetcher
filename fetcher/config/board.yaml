@@ -1,0 +1,10 @@
+client:
+  CLIENT_ID: BruceLee
+  CLIENT_KEY: nice-weather
+urls:
+  BOARD :   "http://board"
+  ARTICLE_LIST : "http://article-list"
+  ARTICLE_VIEW : "http://article-view"
+  ATTACHMENT_FILE: "http://attachment"
+es:
+  index: meta-board

@@ -1,9 +1,9 @@
 import json
 import logging
 import requests
-from typing import Dict, Any
 
-from requests.exceptions import RequestException, ConnectionError
+from typing import Any, Dict
+from requests.exceptions import ConnectionError, RequestException
 
 logger = logging.getLogger(__name__)
 
