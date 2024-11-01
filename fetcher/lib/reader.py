@@ -18,14 +18,14 @@ def _read(file_path: str) -> Dict[str, Any]:
             return yaml.safe_load(raw)
 
 
-def _guard(config: Any):
-    if config is None:
+def _guard(config_obj: Any):
+    if not config_obj:
         raise EmptyConfigError("config file is empty")
 
-    if type(config) is not dict:
-        raise ConfigFormatError("loaded config must be dictionary", type(config))
+    if type(config_obj) is not dict:
+        raise ConfigTypeError("loaded config must be dictionary", type(config_obj))
 
-    return config
+    return config_obj
 
 
 class EmptyConfigError(Exception):
@@ -33,6 +33,6 @@ class EmptyConfigError(Exception):
         super().__init__(*args)
 
 
-class ConfigFormatError(Exception):
+class ConfigTypeError(Exception):
     def __init__(self, *args):
         super().__init__(*args)
