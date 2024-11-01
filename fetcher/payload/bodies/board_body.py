@@ -1,4 +1,3 @@
-# For request body
 from __future__ import annotations
 
 from pydantic import BaseModel
@@ -10,17 +9,17 @@ class ClientInfo(TypedDict):
     CLIENT_KEY: Required[str]
 
 
-class GetBoardBody(TypedDict):
+class GetBoardInfo(TypedDict):
     ID: str
     PAGE: int
 
 
 class BoardRequestBody(BaseModel):
     common: ClientInfo
-    data: GetBoardBody
+    data: GetBoardInfo
 
     @classmethod
-    def create_board_request_body(
-        cls, client_info: ClientInfo, data: GetBoardBody
+    def create_request_body(
+        cls, client_info: ClientInfo, data: GetBoardInfo
     ) -> BoardRequestBody:
         return cls(common=client_info, data=data)
