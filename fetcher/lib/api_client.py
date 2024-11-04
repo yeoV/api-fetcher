@@ -1,4 +1,3 @@
-import json
 import logging
 import requests
 
@@ -8,10 +7,10 @@ from requests.exceptions import ConnectionError, RequestException
 logger = logging.getLogger(__name__)
 
 
-def get_data(url: str, headers: Dict[str, Any] = None):
+def get_data(url: str, headers: Dict[str, Any] = None, verify=True):
     _headers = {"Content-Type": "application/json"} if headers is None else headers
     try:
-        response = requests.get(url=url, headers=_headers, timeout=20)
+        response = requests.get(url=url, headers=_headers, timeout=20, verify=verify)
         response.raise_for_status()
         return response.json()
     except (RequestException, ConnectionError) as e:
@@ -19,16 +18,21 @@ def get_data(url: str, headers: Dict[str, Any] = None):
         raise e
 
 
-def post_data(url: str, headers: Dict[str, Any] = None, data: json = None):
+def post_data(url: str, headers: Dict[str, Any] = None, data=None, verify=True):
     _headers = {"Content-Type": "application/json"} if headers is None else headers
-    if data is None:
+    if not data:
         raise EmptyBodyException("RequestBody data is empty")
     try:
-        response = requests.post(url=url, data=data, headers=_headers)
+        response = requests.post(
+            url=url, data=data, headers=_headers, timeout=20, verify=verify
+        )
         response.raise_for_status()
         return response.json()
     except (RequestException, ConnectionError) as e:
-        logger.error("POST Request Error. %s", e)
+        logger.error("POST request error. %s", e)
+        raise e
+    except AttributeError as e:
+        logger.error("invaild header's 'key' data type. %s", e)
         raise e
 
 
