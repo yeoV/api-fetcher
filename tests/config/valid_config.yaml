@@ -1,0 +1,6 @@
+client:
+  CLIENT_ID: Faker
+urls:
+  BOARD : "http://board"
+es:
+  index: meta-board
